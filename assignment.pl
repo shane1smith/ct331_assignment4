@@ -12,7 +12,24 @@ isElementInList(El, [_|T]):- isElementInList(El,T).
 
 %Definitions for reverseList(List, ReversedList)
 
+%Q2
+% This is the base-case of the rule. It succeeds if the list to be
+% reversed is the empty list.
+reverseList([],[]).
+
+% This is the recursive branch. It reverses the elements in the list one
+% element at a time and merges them into a new list using the mergeLists
+% rule I wrote in Q4. The rule stops recursing when there are no more
+% elements left in the list to be reversed, which is when the base-case
+% is reached.
+reverseList([H|T], ReversedList):- reverseList(T, ReversedT),
+                                   mergeLists(ReversedT, [H], ReversedList).
+
 %insertElementIntoListEnd(El, List, NewList)
+
+%Q3
+% This rule uses the mergeLists rule I wrote in Q4.
+insertElementIntoListEnd(El, List, X) :- mergeLists(List, [El], X).
 
 %Definitions for mergeLists(List1, List2, Merged)
 %Q4
